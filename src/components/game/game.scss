@@ -5,43 +5,7 @@
   
   .game {
     text-align: center;
-    color: rgb(253, 251, 247);
     //display: block;
-  
-    width: 100%;
-    height: 100%;
-  
-    .head {
-      background-color: rgb(22, 27, 78);
-      height: 20vh;
-      justify-content: center;
-    }
-  
-    .container {
-      background-color: rgb(29, 74, 156);
-      height: 60vh;
-      display: block;
-      .top {
-        height: 15vh;
-      }
-      .computer,
-      .player {
-        height: 20vh;
-      }
-      .vs {
-        height: 5vh;
-      }
-    }
-  
-    .bottom {
-      height: 20vh;
-      background-color: rgb(131, 171, 245);
-      .selection {
-        height: 15vh;
-      }
-      .layer{
-        height: 5vh;
-      }
-    }
+    
   }
   

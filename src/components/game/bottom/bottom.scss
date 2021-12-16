@@ -1,0 +1,36 @@
+.bottom {
+  height: 20vh;
+  .selection {
+    box-sizing: border-box;
+    border: 3px;
+    border-color: aquamarine;
+    border-radius: 3%;
+  }
+  .rock {
+    width: 33vh;
+    height: 33vh;
+    float: left;
+  }
+  .paper {
+    width: 33vh;
+    height: 33vh;
+    float: left;
+  }
+  .scissors {
+    width: 33vh;
+    height: 31vh;
+    float: left;
+  }
+  .layer {
+    height: 5vh;
+  }
+
+  img {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:hover{
+      transform: scale(1.1);
+    }
+  }
+
+}
