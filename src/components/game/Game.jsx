@@ -6,7 +6,7 @@ import Head from './head/Head';
 
 export default function game() {
   return (
-    <div>
+    <div className='game'>
       <Head />
       <br />
       <Container />

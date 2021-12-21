@@ -1,16 +1,56 @@
 .container {
-    background-color: rgb(29, 74, 156);
-    height: 60vh;
-    width: 100vh;
-    display: block;
-    .top {
-      height: 15vh;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: block;
+
+  .top {
+    display: flex;
+    .p2 {
+      width: 100%;
+      height: 100%;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-right: 50px;
+      margin-left: 35%;
+    }
+    .changeBtn {
+      width: 50%;
+    }
+  }
+
+  .bot {
+    display: flex;
+    margin-left: 20px;
+    //margin-top: 10%;
+
+    align-items: center;
+    .computer {
+     padding-left: 10%;
+    }
+    .player{
+      padding-right: 10%;
     }
     .computer,
     .player {
-      height: 20vh;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      height: 100%;
+      width: 33%;
     }
     .vs {
+      width: 33%;
+      color: white;
+      font-size: 10vw;
       height: 5vh;
     }
+    img {
+      height: 33%;
+      width: 33%;
+    }
   }
+}
