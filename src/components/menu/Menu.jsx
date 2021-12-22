@@ -10,23 +10,18 @@ export default function Menu({ setSelectedMenu }) {
         start: false,
     }]);
 
-
+    
 
     useEffect(() => {
-        if (localStorage.getItem('myData'))
-
-            setMenuState([{
-                resume: false,
-                newgame: false,
-                start: true
-            }])
-        else
-            setMenuState([{
-                resume: true,
-                newgame: true,
-                start: false
-            }])
-
+        localStorage.getItem('myData') ?  setMenuState([{
+            resume: false,
+            newgame: false,
+            start: true
+        }]) :  setMenuState([{
+            resume: true,
+            newgame: true,
+            start: false
+        }]);
 
 
     }, []);

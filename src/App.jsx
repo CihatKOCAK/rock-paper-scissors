@@ -8,35 +8,43 @@ function App() {
   const [selectedMenu, setSelectedMenu] = useState("")
   const [loggined, setLoggined] = useState(false)
 
-  const [data, setData] = useState([{
-    name: "Rock GAME",
-    loginDate: "",
-    credit: 0,
-    mode:"pvc",
-    raund:[{
-      1:"",
-      2:"",
-      3:""
-    }]
-  }]);
-//JSON.parse(localStorage.getItem('myData'))[0]  
-//console.log(data[0].raund)
-useEffect(() => {
-  localStorage.setItem('myData', JSON.stringify(data))
-}, [data]);
+  const [data, setData] = useState([]);
 
 
+  //check localStorage in case of page refresh or opening and add data to state
+  useEffect(() => {
+    localStorage.getItem('myData') ? setData(JSON.parse(localStorage.getItem('myData'))) : setData([]);
+  }, [])
+
+  //Add to localStorage as data is refreshed
+  useEffect(() => {
+    localStorage.setItem('myData', JSON.stringify(data))
+  }, [data]);
+
+
+
+  //we reset the locale to reset the game or start from scratch 
   const newAndStart = () => {
     var today = new Date();
     var date = today.getDate() + "-" + parseInt(today.getMonth() + 1) + "-" + today.getFullYear();
     setLoggined(true)
-    setData([{ name: "Rock GAME", loginDate: date, credit: 0 }])
+    setData([{
+      name: "Rock GAME",
+      loginDate: date,
+      credit: 0,
+      mode: "pvc",
+      raund: [{
+        1: "",
+        2: "",
+        3: ""
+      }]
+    }])
   }
 
- 
 
- 
 
+
+//menu selections and necessary actions
   useEffect(() => {
     switch (selectedMenu) {
       case "Resume":
@@ -55,7 +63,7 @@ useEffect(() => {
   return (
     <div>
       {loggined ?
-        <Game loggined={loggined} setLoggined={setLoggined} data = {data} setData = {setData} /> :
+        <Game loggined={loggined} setLoggined={setLoggined} data={data} setData={setData} /> :
         <Menu setSelectedMenu={setSelectedMenu} />}
     </div>
 
