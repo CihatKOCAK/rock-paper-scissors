@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react/cjs/react.development';
+import React, { useEffect, useState } from 'react'
 import Bottom from './bottom/Bottom';
 import Container from './container/Container';
 import "./game.scss";
@@ -30,58 +29,77 @@ export default function Game({ setLoggined, data, setData }) {
 
 
   useEffect(() => {
+    var newData = [...data];
 
-    if (selectionDialer(userSelection) === "rock") {
-      if (selectionDialer(pcSelection) === "paper") {
-        var newData = [...data];
-        newData[0].pcScore++;
-        setData(newData);
-        selectionReset();
+    if (newData[0].pcScore < 3 && newData[0].userScore < 3) {
+      if (selectionDialer(userSelection) === "rock") {
+        if (selectionDialer(pcSelection) === "paper") {
+          newData[0].pcScore++;
+          setData(newData);
+          selectionReset();
 
+        }
+        else if (selectionDialer(pcSelection) === "scissors") {
+          newData[0].userScore++;
+          setData(newData);
+          selectionReset();
+        }
+        else
+          selectionReset();
       }
-      else if (selectionDialer(pcSelection) === "scissors") {
-        var newData = [...data];
-        newData[0].userScore++;
-        setData(newData);
-        selectionReset();
+      else if (selectionDialer(userSelection) === "paper") {
+        if (selectionDialer(pcSelection) === "scissors") {
+          newData[0].pcScore++;
+          setData(newData);
+          selectionReset();
+
+        }
+        else if (selectionDialer(pcSelection) === "rock") {
+          newData[0].userScore++;
+          setData(newData);
+          selectionReset();
+        }
+        else
+          selectionReset();
       }
-      else
-        selectionReset();
+      else if (selectionDialer(userSelection) === "scissors") {
+        if (selectionDialer(pcSelection) === "rock") {
+          newData[0].pcScore++;
+          setData(newData);
+          selectionReset();
+
+        }
+        else if (selectionDialer(pcSelection) === "paper") {
+          newData[0].userScore++;
+          setData(newData);
+          selectionReset();
+        }
+        else
+          selectionReset();
+      }
+    } else if (newData[0].userScore === 3) {
+      newData[0].credit += 50;
+      newData[0].userScore = 0;
+      newData[0].pcScore = 0;
+      setData(newData);
     }
-    else if (selectionDialer(userSelection) === "paper") {
-      if (selectionDialer(pcSelection) === "scissors") {
-        var newData = [...data];
-        newData[0].pcScore++;
+    else {
+      if (newData[0].credit > 0) {
+        newData[0].credit -= 25;
+        newData[0].userScore = 0;
+        newData[0].pcScore = 0;
         setData(newData);
-        selectionReset();
-
       }
-      else if (selectionDialer(pcSelection) === "rock") {
-        var newData = [...data];
-        newData[0].userScore++;
+      else {
+        newData[0].credit -= 25;
+        newData[0].userScore = 0;
+        newData[0].pcScore = 0;
         setData(newData);
-        selectionReset();
       }
-      else
-        selectionReset();
     }
-    else if (selectionDialer(userSelection) === "scissors") {
-      if (selectionDialer(pcSelection) === "rock") {
-        var newData = [...data];
-        newData[0].pcScore++;
-        setData(newData);
-        selectionReset();
 
-      }
-      else if (selectionDialer(pcSelection) === "paper") {
-        var newData = [...data];
-        newData[0].userScore++;
-        setData(newData);
-        selectionReset();
-      }
-      else
-        selectionReset();
-    }
+
+
 
   }, [pcSelection])
 

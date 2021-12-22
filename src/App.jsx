@@ -31,7 +31,7 @@ function App() {
     setData([{
       name: "Rock GAME",
       loginDate: date,
-      credit: 0,
+      credit: 100,
       mode: "pvc",
       pcScore: 0,
       userScore:0,

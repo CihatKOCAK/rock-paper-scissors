@@ -15,15 +15,15 @@ export default function Container({ data, setData, userSelection, pcSelection })
             </div>
             <div className="bot">
                 <div className="computer">
-                    <p>COMPUTER</p>
-                    <img src={pcSelection} alt="" />
-                </div>
-                <p className='score'>{data[0].pcScore} PT</p>
-                <div className="vs">vs</div>
-                <p className='score'>{data[0].userScore} PT</p>
-                <div className="player">
                     <p>PLAYER</p>
-                   <img src={userSelection} alt="" />
+                    <img src={userSelection} alt="" />
+                </div>
+                <p className='score'>{data[0].userScore} PT</p>
+                <div className="vs">vs</div>
+                <p className='score'>{data[0].pcScore} PT</p>
+                <div className="player">
+                    <p>COMPUTER</p>
+                   <img src={pcSelection} alt="" />
                 </div>
             </div>
         </div>
