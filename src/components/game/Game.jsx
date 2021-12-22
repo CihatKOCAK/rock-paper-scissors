@@ -4,12 +4,12 @@ import Container from './container/Container';
 import "./game.scss";
 import Head from './head/Head';
 
-export default function game() {
+export default function Game({setLoggined, data}) {
   return (
     <div className='game'>
-      <Head />
+      <Head setLoggined = {setLoggined} />
       <br />
-      <Container />
+      <Container credit = {data['credit']} />
       <Bottom />
     </div>
   )

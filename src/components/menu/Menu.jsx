@@ -1,19 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./menu.scss";
 
-export default function menu({ setSelectedMenu }) {
+export default function Menu({ setSelectedMenu }) {
+
+
+    const [menuState, setMenuState] = useState([{
+        resume: true,
+        newgame: false,
+        start: false,
+    }]);
+
+
+
+    useEffect(() => {
+        if (localStorage.getItem('myData'))
+
+            setMenuState([{
+                resume: false,
+                newgame: false,
+                start: true
+            }])
+        else
+            setMenuState([{
+                resume: true,
+                newgame: true,
+                start: false
+            }])
+
+
+
+    }, []);
+
 
     return (
-       
-            <form className='actionForm' action="/game">
-                <div className='containerMenu' >
-                    <h1 className='menuH'>MENU</h1>
-                    <hr />
-                    <button onClick={() => setSelectedMenu("Resume")}><span>Resume</span></button>
-                    <button onClick={() => setSelectedMenu("NewGame")}>New Game</button>
-                    <button onClick={() => setSelectedMenu("Start")} >Start</button>
-                </div >
-            </form>
-       
+
+        <form className='actionForm' action="/game">
+            <div className='containerMenu' >
+                <h1 className='menuH'>MENU</h1>
+                <hr />
+                <button disabled={menuState[0].resume} onClick={() => setSelectedMenu("Resume")}>Resume</button>
+                <button disabled={menuState[0].newgame} onClick={() => setSelectedMenu('NewGame')}>New Game</button>
+                <button disabled={menuState[0].start} onClick={() => setSelectedMenu("Start")}>Start</button>
+            </div>
+        </form>
+
     )
 }

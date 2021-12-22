@@ -1,10 +1,11 @@
 import React from 'react'
 import "./container.scss";
 
-export default function Container() {
+export default function Container({credit}) {
     return (
         <div className="container">
             <div className="top">
+                <h2>Credit: {credit}</h2>
                 <h2 className='p2'>PLAYER VS COMPUTER</h2>
                 <button className='changeBtn'>CHANGE MODE</button>
 
