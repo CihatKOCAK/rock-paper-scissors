@@ -18,7 +18,7 @@
       margin-right: 50px;
       margin-left: 30%;
     }
-    h2{
+    h2 {
       width: 100%;
     }
     .changeBtn {
@@ -31,13 +31,12 @@
     display: flex;
     margin-left: 20px;
     //margin-top: 10%;
-    
 
     align-items: center;
     .computer {
-     padding-left: 10%;
+      padding-left: 10%;
     }
-    .player{
+    .player {
       padding-right: 10%;
     }
     .computer,
@@ -47,14 +46,34 @@
       height: 100%;
       width: 33%;
     }
+    .score {
+      text-align: center;
+      font-family: cursive;
+      font-size: 18px;
+      border: 10px solid black;
+      padding: 2rem 1rem;
+      min-height: 10%;
+      width: 10%;
+      resize: both;
+      background: linear-gradient(
+        to top,
+        rgba(#cffffe, 0.3),
+        rgba(#f9f7d9, 0.3),
+        rgba(#fce2ce, 0.3),
+        rgba(#ffc1f3, 0.3)
+      );
+      border-color: rgb(250, 247, 247);
+    }
     .vs {
       width: 33%;
+      cursor: default;
       color: white;
       font-size: 10vw;
       height: 5vh;
       margin-bottom: 3%;
     }
     img {
+      padding-top: 15px;
       height: 33%;
       width: 33%;
     }

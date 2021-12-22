@@ -33,8 +33,7 @@ export default function Menu({ setSelectedMenu }) {
 
 
     return (
-
-        <form className='actionForm' action="/game">
+        <div className='actionForm'>
             <div className='containerMenu' >
                 <h1 className='menuH'>MENU</h1>
                 <hr />
@@ -42,7 +41,6 @@ export default function Menu({ setSelectedMenu }) {
                 <button disabled={menuState[0].newgame} onClick={() => setSelectedMenu('NewGame')}>New Game</button>
                 <button disabled={menuState[0].start} onClick={() => setSelectedMenu("Start")}>Start</button>
             </div>
-        </form>
-
+        </div>
     )
 }

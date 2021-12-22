@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./container.scss";
 
-export default function Container({credit}) {
+export default function Container({ credit, userSelection, pcSelection }) {
+   
+    
+
     return (
         <div className="container">
             <div className="top">
@@ -13,18 +16,14 @@ export default function Container({credit}) {
             <div className="bot">
                 <div className="computer">
                     <p>COMPUTER</p>
-
-                    <img src="assets/qmark.png" alt="" />
-
-                    <p>0 PT</p>
+                    <img src={pcSelection} alt="" />
                 </div>
+                <p className='score'>0 PT</p>
                 <div className="vs">vs</div>
+                <p className='score'>0 PT</p>
                 <div className="player">
                     <p>PLAYER</p>
-
-                    <img src="assets/qmark.png" alt="" />
-
-                    <p>0 PT</p>
+                   <img src={userSelection} alt="" />
                 </div>
             </div>
         </div>
