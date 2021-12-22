@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import "./container.scss";
 
-export default function Container({ credit, userSelection, pcSelection }) {
+export default function Container({ data, setData, userSelection, pcSelection }) {
    
     
 
     return (
         <div className="container">
             <div className="top">
-                <h2>Credit: {credit}</h2>
+                <h2>Credit: {data[0].credit}</h2>
                 <h2 className='p2'>PLAYER VS COMPUTER</h2>
                 <button className='changeBtn'>CHANGE MODE</button>
 
@@ -18,9 +18,9 @@ export default function Container({ credit, userSelection, pcSelection }) {
                     <p>COMPUTER</p>
                     <img src={pcSelection} alt="" />
                 </div>
-                <p className='score'>0 PT</p>
+                <p className='score'>{data[0].pcScore} PT</p>
                 <div className="vs">vs</div>
-                <p className='score'>0 PT</p>
+                <p className='score'>{data[0].userScore} PT</p>
                 <div className="player">
                     <p>PLAYER</p>
                    <img src={userSelection} alt="" />

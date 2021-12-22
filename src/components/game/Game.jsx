@@ -7,13 +7,83 @@ import Head from './head/Head';
 
 export default function Game({ setLoggined, data, setData }) {
 
-  const [userSelection, setUserSelection] = useState("assets/qmark.png")
-  const [pcSelection, setPcSelection] = useState("assets/qmark.png")
+  const qMarkPath = "assets/qmark.png";
+  const [userSelection, setUserSelection] = useState(qMarkPath)
+  const [pcSelection, setPcSelection] = useState(qMarkPath)
+
+
+  const selectionReset = () => {
+    setTimeout(() => {
+      setUserSelection(qMarkPath);
+      setPcSelection(qMarkPath);
+    }, 2000);
+
+  };
+
 
   useEffect(() => {
-    var selections = ["assets/rock.png", "assets/paper.png", "assets/scissors.png"]
-    setPcSelection(selections[Math.floor(Math.random() * selections.length)]);
+    if ((userSelection === qMarkPath) === false) {
+      var selections = ["assets/rock.png", "assets/paper.png", "assets/scissors.png"]
+      setPcSelection(selections[Math.floor(Math.random() * selections.length)]);
+    }
   }, [userSelection])
+
+
+  useEffect(() => {
+
+    if (selectionDialer(userSelection) === "rock") {
+      if (selectionDialer(pcSelection) === "paper") {
+        var newData = [...data];
+        newData[0].pcScore++;
+        setData(newData);
+        selectionReset();
+
+      }
+      else if (selectionDialer(pcSelection) === "scissors") {
+        var newData = [...data];
+        newData[0].userScore++;
+        setData(newData);
+        selectionReset();
+      }
+      else
+        selectionReset();
+    }
+    else if (selectionDialer(userSelection) === "paper") {
+      if (selectionDialer(pcSelection) === "scissors") {
+        var newData = [...data];
+        newData[0].pcScore++;
+        setData(newData);
+        selectionReset();
+
+      }
+      else if (selectionDialer(pcSelection) === "rock") {
+        var newData = [...data];
+        newData[0].userScore++;
+        setData(newData);
+        selectionReset();
+      }
+      else
+        selectionReset();
+    }
+    else if (selectionDialer(userSelection) === "scissors") {
+      if (selectionDialer(pcSelection) === "rock") {
+        var newData = [...data];
+        newData[0].pcScore++;
+        setData(newData);
+        selectionReset();
+
+      }
+      else if (selectionDialer(pcSelection) === "paper") {
+        var newData = [...data];
+        newData[0].userScore++;
+        setData(newData);
+        selectionReset();
+      }
+      else
+        selectionReset();
+    }
+
+  }, [pcSelection])
 
   const selectionDialer = (s) => {
     var v1 = s.split('/');
@@ -22,18 +92,18 @@ export default function Game({ setLoggined, data, setData }) {
     return selection;
   }
 
-  
 
-  console.log("user :", selectionDialer(userSelection), "pc :", selectionDialer(pcSelection))
 
   return (
     <div className='game'>
       <Head setLoggined={setLoggined} />
       <br />
       <Container
-        credit={data[0].credit}
+        data={data}
+        setData={setData}
         userSelection={userSelection}
-        pcSelection={pcSelection} />
+        pcSelection={pcSelection}
+      />
       <Bottom setUserSelection={setUserSelection} />
     </div>
   )

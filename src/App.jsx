@@ -33,19 +33,17 @@ function App() {
       loginDate: date,
       credit: 0,
       mode: "pvc",
-      raund: [{
-        1: "",
-        2: "",
-        3: ""
-      }]
+      pcScore: 0,
+      userScore:0,
     }])
   }
 
 
 
 
-//menu selections and necessary actions
+  //menu selections and necessary actions
   useEffect(() => {
+    
     switch (selectedMenu) {
       case "Resume":
         setLoggined(true);
@@ -63,7 +61,11 @@ function App() {
   return (
     <div>
       {loggined ?
-        <Game loggined={loggined} setLoggined={setLoggined} data={data} setData={setData} /> :
+        <Game
+          loggined={loggined}
+          setLoggined={setLoggined}
+          data={data}
+          setData={setData} /> :
         <Menu setSelectedMenu={setSelectedMenu} />}
     </div>
 
