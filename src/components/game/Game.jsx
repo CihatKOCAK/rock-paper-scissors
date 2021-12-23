@@ -17,7 +17,7 @@ export default function Game({ setLoggined, data, setData }) {
       setPcSelection(qMarkPath);
     }, 2000);
 
-  };
+  }; //line of code that selection reset and delay
 
 
   useEffect(() => {
@@ -25,23 +25,20 @@ export default function Game({ setLoggined, data, setData }) {
       var selections = ["assets/rock.png", "assets/paper.png", "assets/scissors.png"]
       setPcSelection(selections[Math.floor(Math.random() * selections.length)]);
     }
-  }, [userSelection])
+  }, [userSelection]) //line of code that makes the pc choose randomly based on the user
 
 
   useEffect(() => {
     var newData = [...data];
-
-    if (newData[0].pcScore < 3 && newData[0].userScore < 3) {
+    if (data[0].normalMode.pcScore < 3 && data[0].normalMode.userScore < 3) {
       if (selectionDialer(userSelection) === "rock") {
         if (selectionDialer(pcSelection) === "paper") {
-          newData[0].pcScore++;
-          setData(newData);
+          newData[0].normalMode.pcScore++;
           selectionReset();
 
         }
         else if (selectionDialer(pcSelection) === "scissors") {
-          newData[0].userScore++;
-          setData(newData);
+          newData[0].normalMode.userScore++;
           selectionReset();
         }
         else
@@ -49,14 +46,12 @@ export default function Game({ setLoggined, data, setData }) {
       }
       else if (selectionDialer(userSelection) === "paper") {
         if (selectionDialer(pcSelection) === "scissors") {
-          newData[0].pcScore++;
-          setData(newData);
+          newData[0].normalMode.pcScore++;
           selectionReset();
 
         }
         else if (selectionDialer(pcSelection) === "rock") {
-          newData[0].userScore++;
-          setData(newData);
+          newData[0].normalMode.userScore++;
           selectionReset();
         }
         else
@@ -64,51 +59,46 @@ export default function Game({ setLoggined, data, setData }) {
       }
       else if (selectionDialer(userSelection) === "scissors") {
         if (selectionDialer(pcSelection) === "rock") {
-          newData[0].pcScore++;
-          setData(newData);
+          newData[0].normalMode.pcScore++;
           selectionReset();
 
         }
         else if (selectionDialer(pcSelection) === "paper") {
-          newData[0].userScore++;
-          setData(newData);
+          newData[0].normalMode.userScore++;
           selectionReset();
         }
         else
           selectionReset();
       }
-    } else if (newData[0].userScore === 3) {
+
+    } else if (newData[0].normalMode.userScore === 3) {
       newData[0].credit += 50;
-      newData[0].userScore = 0;
-      newData[0].pcScore = 0;
-      setData(newData);
+      newData[0].normalMode.userScore = 0;
+      newData[0].normalMode.pcScore = 0;
     }
     else {
       if (newData[0].credit > 0) {
         newData[0].credit -= 25;
-        newData[0].userScore = 0;
-        newData[0].pcScore = 0;
-        setData(newData);
+        newData[0].normalMode.userScore = 0;
+        newData[0].normalMode.pcScore = 0;
       }
       else {
-        newData[0].credit -= 25;
-        newData[0].userScore = 0;
-        newData[0].pcScore = 0;
-        setData(newData);
+        newData[0].normalMode.userScore = 0;
+        newData[0].normalMode.pcScore = 0;
       }
     }
 
+    setData(newData);
 
 
-
-  }, [pcSelection])
+  }, [pcSelection]) //line of code showing who won according to pcSelection
 
   const selectionDialer = (s) => {
     var v1 = s.split('/');
     var v2 = v1[1].split('.');
     var selection = v2[0];
     return selection;
-  }
+  } //line of code that separates the path and only shows selection
 
 
 
@@ -122,7 +112,10 @@ export default function Game({ setLoggined, data, setData }) {
         userSelection={userSelection}
         pcSelection={pcSelection}
       />
-      <Bottom setUserSelection={setUserSelection} />
+      <Bottom
+        setUserSelection={setUserSelection}
+        data={data}
+        setData={setData} />
     </div>
   )
 }
