@@ -21,14 +21,14 @@ export default function Container({ data, setData, userSelection, pcSelection })
             </div>
             <div className="bot">
                 <div className="computer">
-                    <p>{data[0].mode === "pve" ? "PLAYER" : "COMPUTER"}</p>
+                    <p>{data[0].mode === "pve" ? "PLAYER" : "COMPUTER 1"}</p>
                     <img src={userSelection} alt="" />
                 </div>
                 <p className='score'>{data[0].normalMode.userScore} PT</p>
                 <div className="vs">vs</div>
                 <p className='score'>{data[0].normalMode.pcScore} PT</p>
                 <div className="player">
-                    <p>COMPUTER</p>
+                    <p>{data[0].mode === "pve" ? "COMPUTER" : "COMPUTER 2"}</p>
                     <img src={pcSelection} alt="" />
                 </div>
             </div>
