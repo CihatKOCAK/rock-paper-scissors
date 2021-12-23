@@ -3,7 +3,7 @@ import Select from 'react-select';
 import "./bottom.scss";
 
 
-export default function Bottom({ setUserSelection, data, setData }) {
+export default function Bottom({ setUserSelection,userSelectDisabled, data, setData }) {
   const [raundPopUp, setRaundPopUp] = useState("");
   const [hltPopUp, setHltPopUp] = useState("");
 
@@ -28,7 +28,7 @@ export default function Bottom({ setUserSelection, data, setData }) {
       (<div className="bottom">
         <div className="layer"><h2>CHOOSE A WEAPON</h2></div>
         <div className="selection">
-          <img className='rock' onClick={() => setUserSelection("assets/rock.png")} src="assets/rock.png" alt="rock"></img>
+          <img className='rock' onClick={ userSelectDisabled ? () => setUserSelection("assets/rock.png") : ""} src="assets/rock.png" alt="rock"></img>
           <img className='paper' onClick={() => setUserSelection("assets/paper.png")} src="assets/paper.png" alt="paper"></img>
           <img className='scissors' onClick={() => setUserSelection("assets/scissors.png")} src="assets/scissors.png" alt="scissors"></img>
         </div>

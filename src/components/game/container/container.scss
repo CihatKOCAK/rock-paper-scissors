@@ -76,6 +76,18 @@
       padding-top: 15px;
       height: 33%;
       width: 33%;
+      &.winner {
+        border: 10px solid rgb(42, 223, 42);
+        padding: 25px;
+      }
+      &.lose {
+        border: 10px solid rgb(223, 42, 42);
+        padding: 25px;
+      }
+      &.draw {
+        border: 10px solid rgba(108, 144, 153, 0.637);
+        padding: 25px;
+      }
     }
   }
 }

@@ -10,6 +10,7 @@ function App() {
     Change Mode code's in Container jsx
     Selection processes code's in Game jsx
     Score calculations code's in Game jsx
+    Gambling Mode code's in Bottom jsx
     Menu button activity and selection  code's in Menu jsx
     Program startup and database selection processes code's in App jsx
 
@@ -20,6 +21,10 @@ function App() {
 
   const [data, setData] = useState([]);
 
+
+  useEffect(() => {
+   setSelectedMenu("");
+  }, [loggined]) 
 
 
   useEffect(() => {
