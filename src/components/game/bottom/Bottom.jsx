@@ -1,23 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Select from 'react-select';
 import "./bottom.scss";
-import {hlt,bot,watchMode} from "./SelectData"
+import { hlt, bot, watchMode } from "./SelectData"
 
 
-export default function Bottom({ setUserSelection, userSelectDisabled, data,setGamblingMode}) {
+export default function Bottom({ setUserSelection, userSelectDisabled, data, setGamblingMode }) {
   const [raundPopUp, setRaundPopUp] = useState("");
   const [hltPopUp, setHltPopUp] = useState("");
+  const [gamblingError, setGamblingError] = useState(false);
+  const [requiredCredit, setRequiredCredit] = useState("");
 
-  let sHlt,sBotSelection,sWatchMode,sRaundNumber,sRepeat;
+  let sHlt, sBotSelection, sWatchMode, sRaundNumber, sRepeat;
   const getStartGambling = () => {
-    setGamblingMode({
-      raundNum:sRaundNumber,
-      raundRepeat:sRepeat,
-      HLT:sHlt,
-      botSelection:sBotSelection,
-      watchMode:sWatchMode,
-    })
+
+    if (!sRaundNumber) //default values
+      sRaundNumber = 3;
+    if (!sRepeat)
+      sRepeat = 1;
+
+    if (data[0].credit >= sHlt * sRepeat * 25) {
+      setGamblingError(false)
+      setGamblingMode({
+        raundNum: sRaundNumber,
+        raundRepeat: sRepeat,
+        HLT: sHlt,
+        botSelection: sBotSelection,
+        watchMode: sWatchMode,
+      })
+
+    }
+    else {
+      setGamblingError(true)
+      setRequiredCredit(sHlt * sRepeat * 25);
+    }
+
   }
+
+
+
+
 
   return (
     data[0].mode === "pve" ?
@@ -34,7 +55,7 @@ export default function Bottom({ setUserSelection, userSelectDisabled, data,setG
           <h1>Gambling Mode</h1>
           <div className="raundSelection">
             <p>Raund Number:</p>
-            <input type="text" name='set' placeholder='1' onChange={(e) => sRepeat = e.target.value}/>
+            <input type="text" name='set' placeholder='1' onChange={(e) => sRepeat = e.target.value} />
             <p>x</p>
             <input type="text" name='raund' placeholder='3' onChange={(e) => sRaundNumber = e.target.value} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="popup" onClick={() => raundPopUp === "" ? setRaundPopUp("show") : setRaundPopUp("")}>i
@@ -52,18 +73,17 @@ export default function Bottom({ setUserSelection, userSelectDisabled, data,setG
           </div>
 
           <div className="creditAndMode">
-            <p>Credit:</p>
-            <input disabled="false" className='txtCredit' type="text" name='credit' placeholder='Amount' />
             <p>Watch Mode:</p>
             <Select className="comboBox" options={watchMode} onChange={(e) => sWatchMode = e.value} />
           </div>
           <div className="start">
             <div className="credit">
-              <p className={(data[0].gamblingMode.creditEarned > 0)? "profit" :"loss" }>Credit Earned:</p>
-              <p className={(data[0].gamblingMode.creditEarned > 0)? "profit" : "loss"}>{data[0].gamblingMode.creditEarned}</p>
+              <p className={(data[0].gamblingMode.creditEarned > 0) ? "profit" : "loss"}>Credit Earned:</p>
+              <p className={(data[0].gamblingMode.creditEarned > 0) ? "profit" : "loss"}>{data[0].gamblingMode.creditEarned}</p>
             </div>
-            <button onClick={() => getStartGambling()}>PLAY</button>
-             </div>
+            <button onClick={() => getStartGambling()}>PLAY!</button>
+          </div>
+          <div className='error'><p className={gamblingError ? "" : 'hidden'}>{"You need " + requiredCredit + " credits to play!"}</p></div>
         </div>
 
       )
