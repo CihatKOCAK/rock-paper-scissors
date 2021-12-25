@@ -12,7 +12,7 @@ function App() {
     Score calculations code's in Game jsx
     Gambling Mode code's in Bottom jsx
     Menu button activity and selection  code's in Menu jsx
-    Program startup and database selection processes code's in App jsx
+    Program startup and database selection processes code's in App jsx (here)
 
   */
 
@@ -52,12 +52,14 @@ function App() {
         pcScore: 0,
         userScore: 0,
       },
-      gamblingMode: {
+      gamblingMode: { //continue until the round repeat is equalized in the played round 
         raundNum:0,
         raundRepeat:0,
+        roundPlayed:0,
         HLT:0,
         botSelection:0,
         watchMode:0,
+        creditEarned:0,
       }
     }])
   }//we reset the locale to reset the game or start from scratch

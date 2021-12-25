@@ -34,17 +34,37 @@
 
 .bottomGambling {
   background-color: rgba(136, 84, 84, 0.3);
-  .raundSelection, .hltBotSelection,.creditAndMode,.start {
+  .raundSelection,
+  .hltBotSelection,
+  .creditAndMode,
+  .start {
     display: flex;
     justify-content: center;
     padding-top: 2%;
-   }
+  }
+  .credit {
+    display: flex;
+    justify-content: center;
+    margin-right: 0px;
+    p {
+      width: 20vh;
+      margin-top: 4%;
+      text-align: left;
+      &.profit {
+        color: rgb(74, 199, 74);
+      }
+      &.loss {
+        color: rgb(172, 14, 14);
+      }
+      
+    }
+  }
 
-  .comboBox{
+  .comboBox {
     width: 250px;
     padding-right: 15px;
-  } 
-  .txtCredit{
+  }
+  .txtCredit {
     width: 250px;
   }
   p {
@@ -52,7 +72,7 @@
     padding-right: 2%;
     font-size: 3vh;
   }
-  input{
+  input {
     text-align: center;
     width: 50px;
   }
@@ -106,13 +126,21 @@
         animation: fadeIn 1s;
       }
       @-webkit-keyframes fadeIn {
-        from {opacity: 0;} 
-        to {opacity: 1;}
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
-      
+
       @keyframes fadeIn {
-        from {opacity: 0;}
-        to {opacity:1 ;}
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
     }
   }

@@ -11,19 +11,23 @@ export default function Game({ setLoggined, data, setData }) {
   const [pcSelection, setPcSelection] = useState(qMarkPath)
   const [winningSide, setWinningSide] = useState(""); //for sign frame
   const [userSelectDisabled, setUserSelectDisabled] = useState(true); //for no new election until the delay is over
+  const [gamblingMode, setGamblingMode] = useState([]);
 
-  const selectionReset = () => {
+
+  console.log(gamblingMode);
+
+  const selectionReset = (delay) => {
     setTimeout(() => {
       setUserSelection(qMarkPath);
       setPcSelection(qMarkPath);
       setWinningSide("");
       setUserSelectDisabled(true);
-    }, 2000);
+    }, delay ? 2000 : 0);
 
   }; //line of code that selection reset and delay
+ 
 
-
-  useEffect(() => {
+  useEffect(() => { 
     if ((userSelection === qMarkPath) === false) {
       var selections = ["assets/rock.png", "assets/paper.png", "assets/scissors.png"]
       setPcSelection(selections[Math.floor(Math.random() * selections.length)]);
@@ -39,34 +43,34 @@ export default function Game({ setLoggined, data, setData }) {
         if (selectionDialer(pcSelection) === "paper") {
           newData[0].normalMode.pcScore++;
           setWinningSide("pc")
-          selectionReset();
+          selectionReset(true);
 
         }
         else if (selectionDialer(pcSelection) === "scissors") {
           newData[0].normalMode.userScore++;
           setWinningSide("user")
-          selectionReset();
+          selectionReset(true);
         }
         else {
           setWinningSide("draw");
-          selectionReset();
+          selectionReset(true);
         }
       }
       else if (selectionDialer(userSelection) === "paper") {
         if (selectionDialer(pcSelection) === "scissors") {
           newData[0].normalMode.pcScore++;
           setWinningSide("pc")
-          selectionReset();
+          selectionReset(true);
 
         }
         else if (selectionDialer(pcSelection) === "rock") {
           newData[0].normalMode.userScore++;
           setWinningSide("user")
-          selectionReset();
+          selectionReset(true);
         }
         else {
           setWinningSide("draw")
-          selectionReset();
+          selectionReset(true);
         }
 
       }
@@ -74,17 +78,17 @@ export default function Game({ setLoggined, data, setData }) {
         if (selectionDialer(pcSelection) === "rock") {
           newData[0].normalMode.pcScore++;
           setWinningSide("pc")
-          selectionReset();
+          selectionReset(true);
 
         }
         else if (selectionDialer(pcSelection) === "paper") {
           newData[0].normalMode.userScore++;
           setWinningSide("user")
-          selectionReset();
+          selectionReset(true);
         }
         else {
           setWinningSide("draw")
-          selectionReset();
+          selectionReset(true);
         }
 
       }
@@ -139,10 +143,9 @@ export default function Game({ setLoggined, data, setData }) {
         setWinningSide={setWinningSide}
       />
       <Bottom
-        setUserSelection={setUserSelection}
+        setGamblingMode = {setGamblingMode}
         data={data}
-        userSelectDisabled = {userSelectDisabled}
-        setData={setData} />
+        userSelectDisabled={userSelectDisabled} />
     </div>
   )
 }
