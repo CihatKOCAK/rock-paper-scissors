@@ -11,10 +11,13 @@ export default function Game({ setLoggined, data, setData }) {
   const [pcSelection, setPcSelection] = useState(qMarkPath)
   const [winningSide, setWinningSide] = useState(""); //for sign frame
   const [userSelectDisabled, setUserSelectDisabled] = useState(true); //for no new election until the delay is over
-  const [gamblingMode, setGamblingMode] = useState([]);
 
 
-  console.log(gamblingMode);
+  
+
+  useEffect(() => {
+    console.log();
+  }, [data[0].gamblingMode])
 
   const selectionReset = (delay) => {
     setTimeout(() => {
@@ -120,7 +123,7 @@ export default function Game({ setLoggined, data, setData }) {
 
 
 
-
+ 
   const selectionDialer = (s) => {
     var v1 = s.split('/');
     var v2 = v1[1].split('.');
@@ -143,8 +146,9 @@ export default function Game({ setLoggined, data, setData }) {
         setWinningSide={setWinningSide}
       />
       <Bottom
-        setGamblingMode = {setGamblingMode}
         data={data}
+        setData={setData}
+        setUserSelection = {setUserSelection}
         userSelectDisabled={userSelectDisabled} />
     </div>
   )

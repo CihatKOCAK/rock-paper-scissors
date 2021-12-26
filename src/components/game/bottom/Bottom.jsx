@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Select from 'react-select';
 import "./bottom.scss";
 import { hlt, bot, watchMode } from "./SelectData"
 
 
-export default function Bottom({ setUserSelection, userSelectDisabled, data, setGamblingMode }) {
+export default function Bottom({ setUserSelection, userSelectDisabled, data,setData }) {
   const [raundPopUp, setRaundPopUp] = useState("");
   const [hltPopUp, setHltPopUp] = useState("");
   const [gamblingError, setGamblingError] = useState(false);
   const [requiredCredit, setRequiredCredit] = useState("");
-
+  
   let sHlt, sBotSelection, sWatchMode, sRaundNumber, sRepeat;
   const getStartGambling = () => {
 
@@ -20,13 +20,14 @@ export default function Bottom({ setUserSelection, userSelectDisabled, data, set
 
     if (data[0].credit >= sHlt * sRepeat * 25) {
       setGamblingError(false)
-      setGamblingMode({
-        raundNum: sRaundNumber,
-        raundRepeat: sRepeat,
-        HLT: sHlt,
-        botSelection: sBotSelection,
-        watchMode: sWatchMode,
-      })
+      
+      var newDataG = [...data];
+      newDataG[0].gamblingMode.HLT = sHlt;
+      newDataG[0].gamblingMode.raundNum = sRaundNumber;
+      newDataG[0].gamblingMode.raundRepeat = sRepeat;
+      newDataG[0].gamblingMode.botSelection = sBotSelection;
+      newDataG[0].gamblingMode.watchMode = sWatchMode;
+      setData(newDataG);
 
     }
     else {
