@@ -12,11 +12,14 @@ export default function Game({ setLoggined, data, setData }) {
   const [winningSide, setWinningSide] = useState(""); //for sign frame
   const [userSelectDisabled, setUserSelectDisabled] = useState(true); //for no new election until the delay is over
 
+  //update note -> Convert useEffects to useContext, provide the winner controller with class
 
-  
 
   useEffect(() => {
-    console.log();
+    console.log(data[0].gamblingMode);
+
+    //rndSelection 34
+    //kullanıcıya da rastgele seçim yaptır alttaki useEffect değişimden botu ayarlayacak ve seçimler çalışacak. ta daaa mutlu son
   }, [data[0].gamblingMode])
 
   const selectionReset = (delay) => {
@@ -25,21 +28,22 @@ export default function Game({ setLoggined, data, setData }) {
       setPcSelection(qMarkPath);
       setWinningSide("");
       setUserSelectDisabled(true);
-    }, delay ? 2000 : 0);
+    }, delay ? 2000 : 100);
 
   }; //line of code that selection reset and delay
- 
 
-  useEffect(() => { 
+
+
+  useEffect(() => {
     if ((userSelection === qMarkPath) === false) {
-      var selections = ["assets/rock.png", "assets/paper.png", "assets/scissors.png"]
+      let selections = ["assets/rock.png", "assets/paper.png", "assets/scissors.png"]
       setPcSelection(selections[Math.floor(Math.random() * selections.length)]);
     }
   }, [userSelection]) //line of code that makes the pc choose randomly based on the user
 
 
   useEffect(() => {
-    var newData = [...data];
+    let newData = [...data];
     setUserSelectDisabled(false);
     if (data[0].normalMode.pcScore < 3 && data[0].normalMode.userScore < 3) {
       if (selectionDialer(userSelection) === "rock") {
@@ -119,11 +123,11 @@ export default function Game({ setLoggined, data, setData }) {
     setData(newData);
 
 
-  }, [pcSelection]) //line of code showing who won according to pcSelection
+  }, [pcSelection]) //line of code winner controller 
 
 
 
- 
+
   const selectionDialer = (s) => {
     var v1 = s.split('/');
     var v2 = v1[1].split('.');
@@ -148,7 +152,7 @@ export default function Game({ setLoggined, data, setData }) {
       <Bottom
         data={data}
         setData={setData}
-        setUserSelection = {setUserSelection}
+        setUserSelection={setUserSelection}
         userSelectDisabled={userSelectDisabled} />
     </div>
   )

@@ -4,12 +4,12 @@ import "./bottom.scss";
 import { hlt, bot, watchMode } from "./SelectData"
 
 
-export default function Bottom({ setUserSelection, userSelectDisabled, data,setData }) {
+export default function Bottom({ setUserSelection, userSelectDisabled, data, setData }) {
   const [raundPopUp, setRaundPopUp] = useState("");
   const [hltPopUp, setHltPopUp] = useState("");
   const [gamblingError, setGamblingError] = useState(false);
   const [requiredCredit, setRequiredCredit] = useState("");
-  
+
   let sHlt, sBotSelection, sWatchMode, sRaundNumber, sRepeat;
   const getStartGambling = () => {
 
@@ -20,7 +20,7 @@ export default function Bottom({ setUserSelection, userSelectDisabled, data,setD
 
     if (data[0].credit >= sHlt * sRepeat * 25) {
       setGamblingError(false)
-      
+
       var newDataG = [...data];
       newDataG[0].gamblingMode.HLT = sHlt;
       newDataG[0].gamblingMode.raundNum = sRaundNumber;
@@ -56,9 +56,9 @@ export default function Bottom({ setUserSelection, userSelectDisabled, data,setD
           <h1>Gambling Mode</h1>
           <div className="raundSelection">
             <p>Raund Number:</p>
-            <input type="text" name='set' placeholder='1' onChange={(e) => sRepeat = e.target.value} />
+            <input type="text" name='set' placeholder='1' onChange={(e) => sRaundNumber = e.target.value} />
             <p>x</p>
-            <input type="text" name='raund' placeholder='3' onChange={(e) => sRaundNumber = e.target.value} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name='raund' placeholder='3' onChange={(e) => sRepeat = e.target.value} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div className="popup" onClick={() => raundPopUp === "" ? setRaundPopUp("show") : setRaundPopUp("")}>i
               <span className={"popuptext " + raundPopUp} id="myPopup">Sets last 3 raunds and are repeated 1 times</span>
             </div>
