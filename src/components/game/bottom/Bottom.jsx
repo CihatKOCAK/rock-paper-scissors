@@ -14,11 +14,11 @@ export default function Bottom({ setUserSelection, userSelectDisabled, data, set
   const getStartGambling = () => {
 
     if (!sRaundNumber) //default values
-      sRaundNumber = 3;
+      sRaundNumber = 1;
     if (!sRepeat)
-      sRepeat = 1;
+      sRepeat = 3;
 
-    if (data[0].credit >= sHlt * sRepeat * 25) {
+    if (data[0].credit >= sHlt * sRaundNumber * 25) {
       setGamblingError(false)
 
       var newDataG = [...data];

@@ -23,12 +23,22 @@ function App() {
 
 
   useEffect(() => {
-   setSelectedMenu("");
-  }, [loggined]) 
+    
+    setSelectedMenu("");
+  }, [loggined])
 
 
   useEffect(() => {
-    localStorage.getItem('myData') ? setData(JSON.parse(localStorage.getItem('myData'))) : setData([]);
+    if (localStorage.getItem('myData'))
+    {
+      setData(JSON.parse(localStorage.getItem('myData')))
+    }
+     
+    else{
+      setData([]);
+      setLoggined(false)
+    }
+      
   }, []) //check localStorage in case of page refresh or opening and add data to state
 
 
@@ -46,6 +56,7 @@ function App() {
     setData([{
       name: "Rock GAME",
       loginDate: date,
+      loggined:true,
       credit: 100,
       mode: "pve",
       normalMode: {
@@ -53,13 +64,16 @@ function App() {
         userScore: 0,
       },
       gamblingMode: { //continue until the round repeat is equalized in the played round 
-        raundNum:0,
-        raundRepeat:0,
-        roundPlayed:0,
-        HLT:0,
-        botSelection:0,
-        watchMode:0,
-        creditEarned:0,
+        raundNum: 0,
+        raundRepeat: 0,
+        roundPlayed: 0,
+        repeatPlayed: 0,
+        HLT: 0,
+        botSelection: 0,
+        watchMode: 0,
+        creditEarned: 0,
+        pc1Score: 0,
+        pc2Score: 0,
       }
     }])
   }//we reset the locale to reset the game or start from scratch

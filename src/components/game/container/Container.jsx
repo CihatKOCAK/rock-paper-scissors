@@ -25,9 +25,9 @@ export default function Container({ data, setData, userSelection, pcSelection,wi
                     <p>{data[0].mode === "pve" ? "PLAYER" : "COMPUTER 1"}</p>
                     <img className={winningSide === "user"  ? 'winner': winningSide === "draw" ? "draw" : winningSide === "" ? "" : "lose" } src={userSelection} alt="" />
                 </div>
-                <p className='score'>{data[0].normalMode.userScore} PT</p>
+                <p className='score'>{data[0].mode === "pve" ? data[0].normalMode.userScore : data[0].gamblingMode.pc1Score} PT</p>
                 <div className="vs">vs</div>
-                <p className='score'>{data[0].normalMode.pcScore} PT</p>
+                <p className='score'>{data[0].mode === "pve" ? data[0].normalMode.pcScore : data[0].gamblingMode.pc1Score} PT</p>
                 <div className="player">
                     <p>{data[0].mode === "pve" ? "COMPUTER" : "COMPUTER 2"}</p>
                     <img className={winningSide === "pc"  ? 'winner': winningSide === "draw" ? "draw" : winningSide === "" ? "" : "lose"} src={pcSelection} alt="" />
